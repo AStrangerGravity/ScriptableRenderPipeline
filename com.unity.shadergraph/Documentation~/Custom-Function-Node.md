@@ -36,11 +36,11 @@ The example above generates the following function:
 ![05](images/Custom-Function-Node-String-Output.png)
 
 ### Defining the Function via File 
-When using `File` type, the shader function is not automatically gneerated. `File` type simply injects an include reference into the final generated shader and uses a function from inside of the referenced file. The `Name` field must match the name of the function you are trying to call. The `Source` field contains a reference to the HLSL file that contains that function. 
+When using `File` type, the shader function is not automatically generated. `File` type simply injects an include reference into the final generated shader and uses a function from inside of the referenced file. The `Name` field must match the name of the function you are trying to call. The `Source` field contains a reference to the HLSL file that contains that function. 
 
 ![06](images/Custom-Function-Node-File-wFunction.png)
 
-Using `File` type for the Custom Function node means that you need to format your functions properly by hand. One thing to note when creating custom functions for [Shader Graph](Shader-Graph.md) is the precision suffixes. The generated code appends a precision suffix to function names. Your include file function will need to also append your desired precision suffix (shown below with `float`), but your `Name` field **should not include the preicision suffix**. 
+Using `File` type for the Custom Function node means that you need to format your functions properly by hand. One thing to note when creating custom functions for [Shader Graph](Shader-Graph.md) is the precision suffixes. The generated code appends a precision suffix to function names. Your include file function will need to also append your desired precision suffix (shown below with `float`), but your `Name` field **should not include the precision suffix**. 
 
 ![07](images/Custom-Function-Node-File-Function-01.png)
 
