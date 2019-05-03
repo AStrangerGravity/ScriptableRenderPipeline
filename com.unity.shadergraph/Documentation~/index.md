@@ -9,7 +9,7 @@ This repository and its documentation is under active development. Everything is
 
 ## Contents
 * [Getting Started](Getting-Started.md)
-   * [Custom Nodes with CodeFunctionNode](Custom-Nodes-With-CodeFunctionNode.md)
+   * [Custom Functions with Custom Function Node](Custom-Function-Node.md)
 * [Shader Graph](Shader-Graph.md)
    * [Shader Graph Window](Shader-Graph-Window.md)
    * [Blackboard](Blackboard.md)
