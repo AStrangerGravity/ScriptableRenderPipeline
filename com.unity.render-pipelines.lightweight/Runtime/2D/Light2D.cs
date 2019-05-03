@@ -131,6 +131,7 @@ namespace UnityEngine.Experimental.Rendering.LWRP
         [SerializeField, FormerlySerializedAs("m_LightOperationIndex")]
         int m_BlendStyleIndex = 0;
 
+
         [SerializeField]
         float m_FalloffIntensity = 0.5f;
             
@@ -311,6 +312,8 @@ namespace UnityEngine.Experimental.Rendering.LWRP
             Light2DManager.lights[m_PreviousBlendStyleIndex].Remove(this);
             m_PreviousBlendStyleIndex = m_BlendStyleIndex;
             InsertLight();
+
+            ErrorIfDuplicateGlobalLight(this);
         }
 
         BoundingSphere GetBoundingSphere()
@@ -356,14 +359,14 @@ namespace UnityEngine.Experimental.Rendering.LWRP
             return isVisible;
         }
 
-        static internal void WarnIfDuplicateGlobalLight(Light2D light2D)
+        static internal void ErrorIfDuplicateGlobalLight(Light2D light2D)
         {
             for (int i = 0; i < light2D.m_ApplyToSortingLayers.Length; i++)
             {
                 int sortingLayer = light2D.m_ApplyToSortingLayers[i];
                 if(Light2DManager.ContainsDuplicateGlobalLight(sortingLayer, light2D.blendStyleIndex))
                 {
-                    Debug.LogWarning("More than one global light on layer " + SortingLayer.IDToName(sortingLayer) + " for light blend style index " + light2D.m_BlendStyleIndex);
+                    Debug.LogError("More than one global light on layer " + SortingLayer.IDToName(sortingLayer) + " for light blend style index " + light2D.m_BlendStyleIndex);
                 }
             }
         }
@@ -391,7 +394,7 @@ namespace UnityEngine.Experimental.Rendering.LWRP
             m_PreviousBlendStyleIndex = m_BlendStyleIndex;
 
             if (m_LightType == LightType.Global)
-                WarnIfDuplicateGlobalLight(this);
+                ErrorIfDuplicateGlobalLight(this);
 
             m_PreviousLightType = m_LightType;
         }
@@ -471,7 +474,7 @@ namespace UnityEngine.Experimental.Rendering.LWRP
             if (m_LightType != m_PreviousLightType)
             {
                 if (m_LightType == LightType.Global)
-                    WarnIfDuplicateGlobalLight(this);
+                    ErrorIfDuplicateGlobalLight(this);
                 else
                     rebuildMesh = true;
 
