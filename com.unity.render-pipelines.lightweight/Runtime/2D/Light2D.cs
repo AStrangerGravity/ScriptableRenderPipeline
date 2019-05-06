@@ -39,10 +39,10 @@ namespace UnityEngine.Experimental.Rendering.LWRP
 
             // This should be rewritten to search only global lights
             List<Light2D> lights = s_Instance.m_Lights[blendStyleIndex];
-            for (int i=0;i<lights.Count;i++)
+            for (int i = 0; i < lights.Count; ++i)
             {
                 Light2D light = lights[i];
-                if (light.IsLitLayer(sortingLayerIndex))
+                if (light.lightType == Light2D.LightType.Global && light.IsLitLayer(sortingLayerIndex))
                 {
                     // If we found the first global light in our prefab stage
                     if (PrefabStageUtility.GetPrefabStage(light.gameObject) == PrefabStageUtility.GetCurrentPrefabStage())
