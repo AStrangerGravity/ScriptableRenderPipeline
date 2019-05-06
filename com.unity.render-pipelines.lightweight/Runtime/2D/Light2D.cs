@@ -47,14 +47,14 @@ namespace UnityEngine.Experimental.Rendering.LWRP
                     // If we found the first global light in our prefab stage
                     if (PrefabStageUtility.GetPrefabStage(light.gameObject) == PrefabStageUtility.GetCurrentPrefabStage())
                     {
-                        color = light.color;
+                        color = light.color * light.intensity;
                         return true;
                     }
                     else
                     {
                         if (!foundGlobalColor)
                         {
-                            color = light.color;
+                            color = light.color * light.intensity;
                             foundGlobalColor = true;
                         }
                     }
